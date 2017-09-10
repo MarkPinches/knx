@@ -50,7 +50,7 @@ knx.on('bus_event', function(data){
 
 // Create the new database and require the .json file
 var objects_db = new Datastore()
-var knx_objects = require('../../data_files/stonehill_grp_add.json')
+var knx_objects = require('../../data_files/grp_add.json')
 
 // Load the json items into objects_db by iterating over them and inserting each
 for (var i in knx_objects) {
