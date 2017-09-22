@@ -22,7 +22,7 @@ exports.test = function(req, res) {
   // the server with ...
   //console.log(req.headers);
   //console.log(req.body);
-  db.find( { destination : "1/4/21" } , function (err, docs) {
+  db.find( { destination : "1/4/21<<CHANGE TO YOUR GROUP ADDRESS>>" } , function (err, docs) {
 		var current_state = docs[0].value;
 		switch_lights(current_state);
 		res.end('The light was switched!');
@@ -56,12 +56,17 @@ exports.get_id_info = function(req,res){
 		if (err) {
 			console.log(err);
 		};
-  		db.find( {'destination' : docs[0].destination}, function (err, docs){
-  			if (err) {
-				console.log(err);
-			};
-			var current_value = docs[0].value;
-			res.json(docs[0].value) ;
-  		});
+		if (docs.length > 0) {
+  			db.find( {'destination' : docs[0].destination}, function (err, docs){
+  				if (err) {
+					console.log(err);
+				};
+				var current_value = docs[0].value;
+				res.json(docs[0].value) ;
+  			});  		 	
+  		} else {
+  			res.end('Parameter id Error');
+  		};
 	}); 
 };
+
