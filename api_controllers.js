@@ -33,7 +33,7 @@ exports.test = function(req, res) {
 // and send that to the bus
 function switch_lights(current_state){
   var on_off = 1 - current_state;
-  WriteToBus("1/4/20", "DPT1", on_off);
+  WriteToBus("1/4/20<<CHANGE TO YOUR GROUP ADDRESS>>", "DPT1", on_off); // You may have to change the DPT type too
 };
 
 // Here is a more complex function
